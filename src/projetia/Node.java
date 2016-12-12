@@ -15,19 +15,26 @@ public class Node {
     boolean etatSinge;
     char posBoite;
     boolean etatBanane;
-    char posBanane;
     boolean etatNoeud;//exploité ou ps
     int niveau;//pour assurer le developpement de tout les noeuds avant le passage a un autre niveau
 
-    Node(char a, char b, char c) {
+    Node(char a, char b) {
         posSinge = a;
         etatSinge = false;
         posBoite = b;
         etatBanane = false;
-        posBanane = c;
         etatNoeud=false;
         niveau=0;
         
+    }
+    Node(Node nd){
+        posSinge=nd.posSinge;
+        posBoite=nd.posBoite;
+        etatBanane=nd.etatBanane;
+        etatNoeud=nd.etatNoeud;
+        etatSinge=nd.etatSinge;
+        niveau=nd.niveau;
+       
     }
 
     public void allerA(char d) {
@@ -61,32 +68,5 @@ public class Node {
         }
     }
 
-    public void genererNode() {
-        //singe sur le sol
-        if (etatSinge == false) {
-            if (posSinge == posBoite) {//2cas 
-            }
-            //posSinge!= posBoite
-            else {//2 possibilités
-                //possibilité1:aler à la boite
-                allerA(posBoite);
-                //possibilté2:aller a l autre position
-                
-            }
-            
-            
-        //singe sur la boite
-        } else {
-            //peut attrapper la banane
-            if(posSinge==posBanane){
-                
-            }
-            //blocage:noeud n'aura plus des noeuds fils
-            else{
-                
-            }
-
-        }
-
-    }
+    
 }
