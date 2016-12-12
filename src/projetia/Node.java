@@ -18,6 +18,7 @@ public class Node {
     private boolean visited;//exploité ou ps
     private int niveau;//pour assurer le developpement de tout les noeuds avant le passage a un autre niveau
     private int h;//fonction heuristique
+    private boolean sterilisé;
     Node(char a, char b) {
         posSinge = a;
         etatSinge = false;
@@ -26,15 +27,17 @@ public class Node {
         visited=false;
         niveau=0;  
         h=4;
+        sterilisé=false;
     }
     Node(Node nd){
-        posSinge=nd.posSinge;
-        posBoite=nd.posBoite;
-        etatBanane=nd.etatBanane;
-        etatSinge=nd.etatSinge;
+        posSinge=nd.getPosSinge();
+        posBoite=nd.getPosBoite();
+        etatBanane=nd.isEtatBanane();
+        etatSinge=nd.isEtatSinge();
        
-        visited=nd.visited;
-        niveau=nd.niveau;       
+        visited=nd.isVisited();
+        niveau=nd.getNiveau(); 
+        sterilisé=nd.isSterilisé();
     }
     public char getPosSinge() {
         return posSinge;
@@ -93,13 +96,13 @@ public class Node {
     }
 
     public Node allerA(char d) {
-        Node n=null;
-        if ((etatSinge == false) && (posSinge != d)) {//singe au sol
-            n=new Node(this);            
+      //  Node n=null;
+       // if ((etatSinge == false) && (posSinge != d)) {//singe au sol
+          Node  n=new Node(this);            
             n.setPosSinge(d);
-        } else {
-            System.out.println("Action non permise!");//on peut les transformer en exceptions ulterieurement
-        }
+       // } else {
+           // System.out.println("Action non permise!");//on peut les transformer en exceptions ulterieurement
+       // }
         return n;
     }
 
@@ -125,5 +128,19 @@ public class Node {
             n.setEtatBanane(true);
             n.setNiveau(getNiveau()+1);
             return n;
+    }
+
+    /**
+     * @return the sterilisé
+     */
+    public boolean isSterilisé() {
+        return sterilisé;
+    }
+
+    /**
+     * @param sterilisé the sterilisé to set
+     */
+    public void setSterilisé(boolean sterilisé) {
+        this.sterilisé = sterilisé;
     }
 }

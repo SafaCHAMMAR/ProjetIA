@@ -42,7 +42,7 @@ public class HillClimbing {
     }
     
     public ArrayList genererFils(Node n){
-        
+       return new ArrayList();// pour eviter l'erreur :p :p 
     }
     public void demarrer(){
         int niveau=0;

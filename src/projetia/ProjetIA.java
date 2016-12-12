@@ -17,6 +17,10 @@ public class ProjetIA {
     public static void main(String[] args) {
         // TODO code application logic here
         
+        Node nd=new Node('a','b');
+        largeur lg=new largeur(nd);
+        lg.demarrer();
+        
     }
     
 }
