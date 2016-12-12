@@ -16,6 +16,8 @@ public class Node {
     char posBoite;
     boolean etatBanane;
     char posBanane;
+    boolean etatNoeud;//exploité ou ps
+    int niveau;//pour assurer le developpement de tout les noeuds avant le passage a un autre niveau
 
     Node(char a, char b, char c) {
         posSinge = a;
@@ -23,6 +25,8 @@ public class Node {
         posBoite = b;
         etatBanane = false;
         posBanane = c;
+        etatNoeud=false;
+        niveau=0;
         
     }
 
@@ -61,7 +65,13 @@ public class Node {
         //singe sur le sol
         if (etatSinge == false) {
             if (posSinge == posBoite) {//2cas 
-            } else {//2 cas
+            }
+            //posSinge!= posBoite
+            else {//2 possibilités
+                //possibilité1:aler à la boite
+                allerA(posBoite);
+                //possibilté2:aller a l autre position
+                
             }
             
             
