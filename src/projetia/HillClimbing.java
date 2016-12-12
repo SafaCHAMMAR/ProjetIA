@@ -9,23 +9,24 @@ public class HillClimbing {
     public HillClimbing(char a,char b, char c){
         noeudsGeneres=new ArrayList<Node>();
         debut =new Node(a,b);
-        debut.setEtatNoeud(true);//visited
+        debut.setVisited(true);//visited
         noeudsGeneres.add(debut);        
-        genererNoeudBut(c);
+        noeudBut(c);
     }   
     public HillClimbing(){
         noeudsGeneres=new ArrayList<Node>();
         debut =new Node('a','b');
-        debut.setEtatNoeud(true);//visited
+        debut.setVisited(true);//visited
         noeudsGeneres.add(debut);        
-        genererNoeudBut('c');
+        but=noeudBut('c');
     }
-    public void genererNoeudBut(char c){
-        but.setPosSinge(c);
-        but.setPosBoite(c);
-        but.setEtatSinge(true);
-        but.setEtatBanane(true);
-        but.setH(0);
+    public Node noeudBut(char c){
+        Node n=new Node(c,c);        
+        n.setEtatSinge(true);
+        n.setEtatBanane(true);
+        n.setH(0);
+        n.setNiveau(100);
+        return n;
     }
     public int calculerH(Node n){
         int h = 4;
@@ -38,5 +39,15 @@ public class HillClimbing {
         if(n.isEtatBanane()==but.isEtatBanane())
             h--;
         return h;
+    }
+    
+    public ArrayList genererFils(Node n){
+        
+    }
+    public void demarrer(){
+        int niveau=0;
+        while(but.isVisited()==true){
+            
+        }
     }
 }

@@ -15,7 +15,7 @@ public class Node {
     private boolean etatSinge;
     private char posBoite;
     private boolean etatBanane;
-    private boolean etatNoeud;//exploité ou ps
+    private boolean visited;//exploité ou ps
     private int niveau;//pour assurer le developpement de tout les noeuds avant le passage a un autre niveau
     private int h;//fonction heuristique
     Node(char a, char b) {
@@ -23,7 +23,7 @@ public class Node {
         etatSinge = false;
         posBoite = b;
         etatBanane = false;
-        etatNoeud=false;
+        visited=false;
         niveau=0;  
         h=4;
     }
@@ -33,7 +33,7 @@ public class Node {
         etatBanane=nd.etatBanane;
         etatSinge=nd.etatSinge;
        
-        etatNoeud=nd.etatNoeud;
+        visited=nd.visited;
         niveau=nd.niveau;       
     }
     public char getPosSinge() {
@@ -68,12 +68,12 @@ public class Node {
         this.etatBanane = etatBanane;
     }
 
-    public boolean isEtatNoeud() {
-        return etatNoeud;
+    public boolean isVisited() {
+        return visited;
     }
 
-    public void setEtatNoeud(boolean etatNoeud) {
-        this.etatNoeud = etatNoeud;
+    public void setVisited(boolean etatNoeud) {
+        this.visited = etatNoeud;
     }
 
     public int getNiveau() {
