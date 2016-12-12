@@ -49,12 +49,12 @@ public class largeur {
             } //posSinge!= posBoite
             else {//2 possibilités
                 //possibilité1:aler à la boite
-                if(nd.posBoite!='c'){
+                //if(nd.posBoite!='c'){
                // nd.allerA(nd.posBoite);
                 //possibilté2:aller a l autre position
                 
 
-            }
+           // }
             }
             //singe sur la boite
         } else {
