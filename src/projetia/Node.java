@@ -33,7 +33,7 @@ public class Node {
         etatBanane=nd.etatBanane;
         etatNoeud=nd.etatNoeud;
         etatSinge=nd.etatSinge;
-        niveau=nd.niveau;
+        //niveau=nd.niveau;
        
     }
 
