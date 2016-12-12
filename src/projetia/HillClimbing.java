@@ -1,30 +1,42 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package projetia;
-
 import java.util.ArrayList;
 
-/**
- *
- * @author zaineb
- */
 public class HillClimbing {
-    private Node ed;
-    private Node eb;
-    private ArrayList NoeudsGeneres;
+    private Node debut;
+    private Node but;
+    private ArrayList noeudsGeneres;
     
     public HillClimbing(char a,char b, char c){
-        NoeudsGeneres=new ArrayList<Node>();
-        ed.setPosSinge(a);
-        ed.setPosBoite(b);
-        ed.setEtatSinge(false);
-        ed.setEtatBanane(false);
-        eb.setPosSinge(c);
-        eb.setPosBoite(c);
-        eb.setEtatSinge(false);
-        eb.setEtatBanane(false);
+        noeudsGeneres=new ArrayList<Node>();
+        debut =new Node(a,b);
+        debut.setEtatNoeud(true);//visited
+        noeudsGeneres.add(debut);        
+        genererNoeudBut(c);
+    }   
+    public HillClimbing(){
+        noeudsGeneres=new ArrayList<Node>();
+        debut =new Node('a','b');
+        debut.setEtatNoeud(true);//visited
+        noeudsGeneres.add(debut);        
+        genererNoeudBut('c');
+    }
+    public void genererNoeudBut(char c){
+        but.setPosSinge(c);
+        but.setPosBoite(c);
+        but.setEtatSinge(true);
+        but.setEtatBanane(true);
+        but.setH(0);
+    }
+    public int calculerH(Node n){
+        int h = 4;
+        if(n.getPosSinge()==but.getPosSinge())
+            h--;
+        if (n.getPosBoite()==but.getPosBoite())
+            h--;
+        if(n.isEtatSinge()==but.isEtatSinge())
+            h--;
+        if(n.isEtatBanane()==but.isEtatBanane())
+            h--;
+        return h;
     }
 }

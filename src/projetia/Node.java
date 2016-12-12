@@ -24,7 +24,8 @@ public class Node {
         posBoite = b;
         etatBanane = false;
         etatNoeud=false;
-        niveau=0;        
+        niveau=0;  
+        h=4;
     }
     Node(Node nd){
         posSinge=nd.posSinge;
@@ -34,7 +35,6 @@ public class Node {
         etatNoeud=nd.etatNoeud;
         niveau=nd.niveau;       
     }
-
     public char getPosSinge() {
         return posSinge;
     }
@@ -91,34 +91,38 @@ public class Node {
         this.h = h;
     }
 
-    public void allerA(char d) {
-        if ((etatSinge == false) && (posSinge != d)) {//singe au sol 
-            posSinge = d;
+    public Node allerA(char d) {
+        Node n=null;
+        if ((etatSinge == false) && (posSinge != d)) {//singe au sol
+            n=new Node(this);            
+            n.setPosSinge(d);
         } else {
             System.out.println("Action non permise!");//on peut les transformer en exceptions ulterieurement
         }
+        return n;
     }
 
-    public void pousser(char d) {
-        if ((etatSinge == false) && (posSinge != d) && (posSinge == posBoite)) {
-            posSinge = d;
-            posBoite = d;
-        } else {
-            System.out.println("Action non permise!");//on peut les transformer en exceptions ultirieurement
-        }
+    public Node pousser(char d) {
+        //if ((etatSinge == false) && (posSinge != d) && (posSinge == posBoite)) {
+            Node n=new Node(this);
+            n.setPosSinge(d);
+            n.setPosBoite(d);
+            n.setNiveau(getNiveau()+1);
+        return n;
+    }
+    public Node grimper() {        
+        //if ((etatSinge == false) && (posSinge == posBoite)) {
+            Node n=new Node(this);
+            n.setEtatSinge(true);
+            n.setNiveau(getNiveau()+1);
+        return n;
     }
 
-    public void grimper() {
-        if ((etatSinge == false) && (posSinge == posBoite)) {
-            etatSinge = true;
-        }
-    }
-
-    public void attraper() {
-        if ((etatSinge == true) && (etatBanane == false) && (posSinge == posBoite)) {
-            etatBanane = true;
-        } else {
-            System.out.println("Action non permise!");//on peut les transformer en exceptions ultirieurement
-        }
+    public Node attraper() {
+        //if ((etatSinge == true) && (etatBanane == false) && (posSinge == posBoite)) {
+            Node n=new Node(this);
+            n.setEtatBanane(true);
+            n.setNiveau(getNiveau()+1);
+            return n;
     }
 }
