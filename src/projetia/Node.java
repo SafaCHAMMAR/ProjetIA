@@ -32,6 +32,7 @@ public class Node {
         posBoite=nd.posBoite;
         etatBanane=nd.etatBanane;
         etatSinge=nd.etatSinge;
+       
         etatNoeud=nd.etatNoeud;
         niveau=nd.niveau;       
     }
