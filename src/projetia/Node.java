@@ -100,6 +100,7 @@ public class Node {
        // if ((etatSinge == false) && (posSinge != d)) {//singe au sol
           Node  n=new Node(this);            
             n.setPosSinge(d);
+            n.setNiveau(getNiveau()+1);
        // } else {
            // System.out.println("Action non permise!");//on peut les transformer en exceptions ulterieurement
        // }
@@ -143,4 +144,12 @@ public class Node {
     public void setSterilisé(boolean sterilisé) {
         this.sterilisé = sterilisé;
     }
+        public boolean compareTo(Node nd){
+        if ((nd.isEtatSinge() ==isEtatSinge()) && (nd.getPosSinge() == getPosSinge()) && (nd.getPosBoite() == getPosBoite()) && (nd.isEtatBanane() == isEtatBanane())) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+      
 }

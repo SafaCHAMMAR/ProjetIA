@@ -150,7 +150,7 @@ public class largeur {
         but = estEtatBut(sommet);
         int index;
         Node nd=sommet;
-       // System.out.println("sommet :("+nd.getPosSinge()+","+nd.isEtatSinge()+","+nd.getPosBoite()+","+nd.isEtatBanane()+")");
+       //System.out.println("sommet :("+nd.getPosSinge()+","+nd.isEtatSinge()+","+nd.getPosBoite()+","+nd.isEtatBanane()+")");
         //Iterator it = v.iterator();
         Enumeration<Node> elmnt = v.elements();
        /*while (it.hasNext() && !estEtatBut(nd) && !nd.isSterilisé()) {

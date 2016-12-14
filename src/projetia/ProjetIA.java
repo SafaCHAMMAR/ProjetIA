@@ -17,9 +17,12 @@ public class ProjetIA {
     public static void main(String[] args) {
         // TODO code application logic here
         
-        Node nd=new Node('a','b');
-        largeur lg=new largeur(nd);
+        HillClimbing lg=new HillClimbing();
         lg.demarrer();
+        lg.showVisited();
+        /*Node nd=new Node('a','b');
+        Node nd2=new Node('a','b');
+        System.out.println(nd.compareTo(nd2));*/
         
     }
     
