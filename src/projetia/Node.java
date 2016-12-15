@@ -48,6 +48,17 @@ public class Node {
         f=h+niveau;
         sterilisé=false;
     }
+    Node (char x,boolean y,char z,boolean w){
+        posSinge = x;
+        etatSinge = y;
+        posBoite = z;
+        etatBanane = w;
+        visited=false;
+        niveau=0;  
+        h=4;
+        f=h+niveau;
+        sterilisé=false;
+    }
     public char getPosSinge() {
         return posSinge;
     }

@@ -166,7 +166,9 @@ public class largeur {
             nd =nd1;//= (Node) v.get(index);
             System.out.println("taille de vector "+v.size());
             }
-            else System.out.println("On a atteint l'etat but!!"+"("+nd1.getPosSinge()+","+nd1.isEtatSinge()+","+nd1.getPosBoite()+","+nd1.isEtatBanane()+")");
+            else { System.out.println("("+nd1.getPosSinge()+","+nd1.isEtatSinge()+","+nd1.getPosBoite()+","+nd1.isEtatBanane()+")");
+                System.out.println("On a atteint l'etat but!!"+"("+nd1.getPosSinge()+","+nd1.isEtatSinge()+","+nd1.getPosBoite()+","+nd1.isEtatBanane()+")");
+            }
             
         }
         System.out.println("terminéééé!!!");
