@@ -20,7 +20,6 @@ public class HillClimbingMinorant {
         debut =new Node('a','b');
         debut.setVisited(false);//not visited
         noeudsGeneres.add(debut);
-        //System.out.println(debut.getF());        
         but=noeudBut('c');
     }
     public Node noeudBut(char c){
@@ -143,17 +142,11 @@ public class HillClimbingMinorant {
     }         
             public boolean existeNoeud(Node nd) {
         boolean rst = false;
-        //Iterator it = v.iterator();
-       // System.out.println("----NOEUD A VERIFIER L EXISTENCE");
-        //System.out.println("("+nd.getPosSinge()+","+nd.isEtatSinge()+","+nd.getPosBoite()+","+nd.isEtatBanane()+")");
         Enumeration<Node> elmnt1 = noeudsGeneres.elements();
-        //System.out.println("les elmnts du vector");
         while (elmnt1.hasMoreElements() && !rst) {
             Node noeud = (Node) elmnt1.nextElement();
-           // System.out.println("("+noeud.getPosSinge()+","+noeud.isEtatSinge()+","+noeud.getPosBoite()+","+nd.isEtatBanane()+")");
             if ((noeud.isEtatSinge() == nd.isEtatSinge()) && (noeud.getPosSinge() == nd.getPosSinge()) && (noeud.getPosBoite() == nd.getPosBoite()) && (noeud.isEtatBanane() == nd.isEtatBanane())) {
                 {rst = true;
-                //System.out.println("EXISTE");
                 }
             }
         }
@@ -161,7 +154,6 @@ public class HillClimbingMinorant {
     }   
              public int getIndexInf(Node noeudCourante){//retourne l'indexe de lui mm si il y'en a pas
                 int h=noeudCourante.getH();
-                //System.out.println(noeudCourante.isVisited());
                 int indexInf = noeudsGeneres.indexOf(noeudCourante);
                 Enumeration<Node> elmnt1 = noeudsGeneres.elements();
                 boolean stop=false;
@@ -171,7 +163,6 @@ public class HillClimbingMinorant {
                             h=v.getH();
                             stop=true;
                             indexInf=noeudsGeneres.indexOf(v);
-                            //System.out.println("here("+v.getPosSinge()+","+v.isEtatSinge()+","+v.getPosBoite()+","+v.isEtatBanane()+")+ niveau= "+v.getNiveau()+" f="+v.getF()+"visited=>"+v.isVisited());                    
                 }
                 }
                 while (elmnt1.hasMoreElements()) {
@@ -179,10 +170,8 @@ public class HillClimbingMinorant {
                 if(!v.isSterilisé()&&!v.isVisited()&&v.getH()<h){         
                             h=v.getH();
                             indexInf=noeudsGeneres.indexOf(v);
-                            //System.out.println("here("+v.getPosSinge()+","+v.isEtatSinge()+","+v.getPosBoite()+","+v.isEtatBanane()+")+ niveau= "+v.getNiveau()+" f="+v.getF()+"visited=>"+v.isVisited());                    
                 }
                 }
-                     //System.out.println("indexxxxx"+indexInf);
                 return indexInf;
             }
             public void demarrer(){
@@ -190,7 +179,6 @@ public class HillClimbingMinorant {
         Vector v=new Vector<Node>();
         v = genererFils(debut);//visited true, niveau 0, ceux qui sont generé visited false, niveau 1
         noeudsGeneres.addAll(v);
-        //System.out.println(v.size());
         debut.setVisited(true);
         int indexFilsInf=getIndexInf(debut);
                 while (!((Node)noeudsGeneres.get(indexFilsInf)).compareTo(but)){
@@ -200,8 +188,27 @@ public class HillClimbingMinorant {
                             ((Node)noeudsGeneres.get(indexFilsInf)).setVisited(true);
                             indexFilsInf=getIndexInf((Node)noeudsGeneres.get(indexFilsInf));
             }
+                   if(stopRecherche()){
+                   System.out.println("Pas de solutions");
+               }
+               else{
+                   int indexBut=noeudsGeneres.size()-1;
+                   Node NodeBut=(Node)noeudsGeneres.elementAt(indexBut);
+                    System.out.println("Solution trouvée: "+"("+NodeBut.getPosSinge()+","+NodeBut.isEtatSinge()+","+NodeBut.getPosBoite()+","+NodeBut.isEtatBanane()+")");
+               }
             }
-    public void showVisited(){
+            public boolean stopRecherche(){
+                boolean stop=true;
+             Enumeration<Node> elmnt1 = noeudsGeneres.elements();
+                while (elmnt1.hasMoreElements()) {
+                Node v = (Node) elmnt1.nextElement();
+                if(!v.isSterilisé()&&!v.isVisited()){  
+                    stop=false;
+                }   
+            }
+                return stop;
+            }
+    public void afficherNoeudsGeneres(){
         System.out.println(noeudsGeneres.size()+" Noeuds sont Générés:");
         Enumeration<Node> elmnt1 = noeudsGeneres.elements();
                 while (elmnt1.hasMoreElements()) {
