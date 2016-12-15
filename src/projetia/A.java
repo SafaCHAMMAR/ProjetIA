@@ -3,19 +3,19 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Vector;
 
-public class HillClimbing {
+public class A {
     private Node debut;
     private Node but;
     private Vector noeudsGeneres=new Vector<Node>();;
     
-    public HillClimbing(char a,char b, char c){
+    public A(char a,char b, char c){
         noeudsGeneres=new Vector<Node>();
         debut =new Node(a,b);
         debut.setVisited(false);//visited
         noeudsGeneres.add(debut);        
         noeudBut(c);
     }   
-    public HillClimbing(){
+    public A(){
         noeudsGeneres=new Vector<Node>();
         debut =new Node('a','b');
         debut.setVisited(false);//not visited
