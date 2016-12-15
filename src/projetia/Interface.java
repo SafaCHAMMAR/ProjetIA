@@ -76,6 +76,11 @@ public class Interface extends javax.swing.JFrame {
         jLabel7.setText("METHODE DE RESOLUTION");
 
         methodeS.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Largeur", "HillClimbing", "A*" }));
+        methodeS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                methodeSActionPerformed(evt);
+            }
+        });
 
         buttonCommencer.setText("Commencer");
         buttonCommencer.addActionListener(new java.awt.event.ActionListener() {
@@ -170,11 +175,26 @@ public class Interface extends javax.swing.JFrame {
                lg.demarrer();
             break;
             case "HillClimbing":
+                HillClimbing hl=new HillClimbing();
+                hl.demarrer();
+                hl.afficherNoeudsGeneres();
+            break;
+            case "HillClimbingMinorant":
+                HillClimbingMinorant hlm=new HillClimbingMinorant();
+                hlm.demarrer();
+                hlm.afficherNoeudsGeneres();
             break;
             case "A*":
+                A a=new A();
+                a.demarrer();
+                a.afficherNoeudsGeneres();
             break;
         }
     }//GEN-LAST:event_buttonCommencerActionPerformed
+
+    private void methodeSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_methodeSActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_methodeSActionPerformed
 
     /**
      * @param args the command line arguments
