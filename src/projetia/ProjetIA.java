@@ -1,14 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package projetia;
 
-/**
- *
- * @author zaineb
- */
 public class ProjetIA {
 
     /**
@@ -16,10 +7,18 @@ public class ProjetIA {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        
-        HillClimbing lg=new HillClimbing();
+        System.out.println("---------------------Hill Climbing---------------------");
+        HillClimbing hl=new HillClimbing();
+        hl.demarrer();
+        hl.showVisited();
+        System.out.println("\n----------------Hill Climbing MINORANT-----------------");
+        HillClimbingMinorant lg=new HillClimbingMinorant();
         lg.demarrer();
         lg.showVisited();
+        System.out.println("\n-------------------------A*----------------------------");
+        A a=new A();
+        a.demarrer();
+        a.showVisited();
         /*Node nd=new Node('a','b');
         Node nd2=new Node('a','b');
         System.out.println(nd.compareTo(nd2));*/

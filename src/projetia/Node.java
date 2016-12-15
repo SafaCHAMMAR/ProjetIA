@@ -18,6 +18,14 @@ public class Node {
     private boolean visited;//exploité ou ps
     private int niveau;//pour assurer le developpement de tout les noeuds avant le passage a un autre niveau
     private int h;//fonction heuristique
+    private int f;
+
+    public int getF() {
+        return getH()+getNiveau();
+    }
+    public void setF(int f) {
+        this.f = f;
+    }
     private boolean sterilisé;
     Node(char a, char b) {
         posSinge = a;
@@ -27,17 +35,18 @@ public class Node {
         visited=false;
         niveau=0;  
         h=4;
+        f=h+niveau;
         sterilisé=false;
     }
     Node(Node nd){
         posSinge=nd.getPosSinge();
         posBoite=nd.getPosBoite();
         etatBanane=nd.isEtatBanane();
-        etatSinge=nd.isEtatSinge();
-       
-        visited=nd.isVisited();
+        etatSinge=nd.isEtatSinge();       
+        visited=false;
         niveau=nd.getNiveau(); 
-        sterilisé=nd.isSterilisé();
+        f=h+niveau;
+        sterilisé=false;
     }
     public char getPosSinge() {
         return posSinge;

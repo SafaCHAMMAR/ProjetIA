@@ -3,19 +3,19 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Vector;
 
-public class A {
+public class HillClimbingMinorant {
     private Node debut;
     private Node but;
     private Vector noeudsGeneres=new Vector<Node>();;
     
-    public A(char a,char b, char c){
+    public HillClimbingMinorant(char a,char b, char c){
         noeudsGeneres=new Vector<Node>();
         debut =new Node(a,b);
         debut.setVisited(true);//visited
         noeudsGeneres.add(debut);
         noeudBut(c);
     }   
-    public A(){
+    public HillClimbingMinorant(){
         noeudsGeneres=new Vector<Node>();
         debut =new Node('a','b');
         debut.setVisited(false);//not visited
@@ -31,9 +31,8 @@ public class A {
         n.setNiveau(100);
         return n;
     }
-    public int calculerF(Node n){
+    public int calculerH(Node n){
         int h = 4;
-        int niveau=n.getNiveau();
         int f=0;
         if(n.getPosSinge()==but.getPosSinge())
             h--;
@@ -43,8 +42,7 @@ public class A {
             h--;
         if(n.isEtatBanane()==but.isEtatBanane())
             h--;
-        f=h+niveau;
-        return f;
+        return h;
     }
     
     public Vector genererFils(Node nd){
@@ -137,26 +135,12 @@ public class A {
             int h=4;
         if (!pere.compareTo(nd)) { 
                 nd.setH(calculerH(nd));
-                nd.setF(calculerF(nd));
                 if(existeNoeud(nd)){
                     nd.setSterilisé(true);
                 }
             v.addElement(nd);
         }
-    }
-         public int calculerH(Node n){
-        int h = 4;
-        if(n.getPosSinge()==but.getPosSinge())
-            h--;
-        if (n.getPosBoite()==but.getPosBoite())
-            h--;
-        if(n.isEtatSinge()==but.isEtatSinge())
-            h--;
-        if(n.isEtatBanane()==but.isEtatBanane())
-            h--;
-        return h;
-    }
-         
+    }         
             public boolean existeNoeud(Node nd) {
         boolean rst = false;
         //Iterator it = v.iterator();
@@ -176,7 +160,7 @@ public class A {
         return rst;
     }   
              public int getIndexInf(Node noeudCourante){//retourne l'indexe de lui mm si il y'en a pas
-                int f=0;
+                int h=noeudCourante.getH();
                 //System.out.println(noeudCourante.isVisited());
                 int indexInf = noeudsGeneres.indexOf(noeudCourante);
                 Enumeration<Node> elmnt1 = noeudsGeneres.elements();
@@ -184,7 +168,7 @@ public class A {
                 while (elmnt1.hasMoreElements()&&!stop) {
                 Node v = (Node) elmnt1.nextElement();
                 if(!v.isSterilisé()&&!v.isVisited()){         
-                            f=v.getF();
+                            h=v.getH();
                             stop=true;
                             indexInf=noeudsGeneres.indexOf(v);
                             //System.out.println("here("+v.getPosSinge()+","+v.isEtatSinge()+","+v.getPosBoite()+","+v.isEtatBanane()+")+ niveau= "+v.getNiveau()+" f="+v.getF()+"visited=>"+v.isVisited());                    
@@ -192,8 +176,8 @@ public class A {
                 }
                 while (elmnt1.hasMoreElements()) {
                 Node v = (Node) elmnt1.nextElement();
-                if(!v.isSterilisé()&&!v.isVisited()&&v.getF()<f){         
-                            f=v.getF();
+                if(!v.isSterilisé()&&!v.isVisited()&&v.getH()<h){         
+                            h=v.getH();
                             indexInf=noeudsGeneres.indexOf(v);
                             //System.out.println("here("+v.getPosSinge()+","+v.isEtatSinge()+","+v.getPosBoite()+","+v.isEtatBanane()+")+ niveau= "+v.getNiveau()+" f="+v.getF()+"visited=>"+v.isVisited());                    
                 }
@@ -222,7 +206,7 @@ public class A {
         Enumeration<Node> elmnt1 = noeudsGeneres.elements();
                 while (elmnt1.hasMoreElements()) {
                     Node v=elmnt1.nextElement();
-              System.out.println(noeudsGeneres.indexOf(v)+": ("+v.getPosSinge()+","+v.isEtatSinge()+","+v.getPosBoite()+","+v.isEtatBanane()+") niveau= "+v.getNiveau()+" f="+v.getF()+" visited=>"+v.isVisited()+" sterilisé=>"+v.isSterilisé());                    
+              System.out.println(noeudsGeneres.indexOf(v)+": ("+v.getPosSinge()+","+v.isEtatSinge()+","+v.getPosBoite()+","+v.isEtatBanane()+") niveau= "+v.getNiveau()+" h="+v.getH()+" visited=>"+v.isVisited()+" sterilisé=>"+v.isSterilisé());                    
                 }
     }
 }
