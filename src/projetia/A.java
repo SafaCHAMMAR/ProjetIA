@@ -216,8 +216,27 @@ public class A {
                             ((Node)noeudsGeneres.get(indexFilsInf)).setVisited(true);
                             indexFilsInf=getIndexInf((Node)noeudsGeneres.get(indexFilsInf));
             }
+                   if(stopRecherche()){
+                   System.out.println("Pas de solutions");
+               }
+               else{
+                   int indexBut=noeudsGeneres.size()-1;
+                   Node NodeBut=(Node)noeudsGeneres.elementAt(indexBut);
+                    System.out.println("Solution trouvée: "+"("+NodeBut.getPosSinge()+","+NodeBut.isEtatSinge()+","+NodeBut.getPosBoite()+","+NodeBut.isEtatBanane()+")");
+               }
             }
-    public void showVisited(){
+                        public boolean stopRecherche(){
+                boolean stop=true;
+             Enumeration<Node> elmnt1 = noeudsGeneres.elements();
+                while (elmnt1.hasMoreElements()) {
+                Node v = (Node) elmnt1.nextElement();
+                if(!v.isSterilisé()&&!v.isVisited()){  
+                    stop=false;
+                }   
+            }
+                return stop;
+            }
+    public void afficherNoeudsGeneres(){
         System.out.println(noeudsGeneres.size()+" Noeuds sont Générés:");
         Enumeration<Node> elmnt1 = noeudsGeneres.elements();
                 while (elmnt1.hasMoreElements()) {
