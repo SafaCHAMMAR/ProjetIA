@@ -28,17 +28,17 @@ public class largeur {
     public boolean existeNoeud(Node nd) {
         boolean rst = false;
         //Iterator it = v.iterator();
-        System.out.println("----NOEUD A VERIFIER L EXISTENCE");
-        System.out.println("("+nd.getPosSinge()+","+nd.isEtatSinge()+","+nd.getPosBoite()+","+nd.isEtatBanane()+")");
+       // System.out.println("----NOEUD A VERIFIER L EXISTENCE");
+       // System.out.println("("+nd.getPosSinge()+","+nd.isEtatSinge()+","+nd.getPosBoite()+","+nd.isEtatBanane()+")");
         Enumeration<Node> elmnt1 = v.elements();
-        System.out.println("les elmnts du vector");
+        //System.out.println("les elmnts du vector");
         while (elmnt1.hasMoreElements() && !rst) {
             Node noeud = (Node) elmnt1.nextElement();
-            System.out.println("("+noeud.getPosSinge()+","+noeud.isEtatSinge()+","+noeud.getPosBoite()+","+nd.isEtatBanane()+")");
+           // System.out.println("("+noeud.getPosSinge()+","+noeud.isEtatSinge()+","+noeud.getPosBoite()+","+nd.isEtatBanane()+")");
             if ((noeud.isEtatSinge() == nd.isEtatSinge()) && (noeud.getPosSinge() == nd.getPosSinge()) && (noeud.getPosBoite() == nd.getPosBoite()) && (noeud.isEtatBanane() == nd.isEtatBanane())) {
-                {rst = true;System.out.println("EXISTE");}
+                rst = true;}//System.out.println("EXISTE");}
+      
             }
-        }
         return rst;
     }
 
@@ -79,10 +79,12 @@ public class largeur {
                     Node noeud2=nd.pousser('b');
                     Node noeud3=nd.allerA('c');
                     Node noeud4=nd.allerA('b');
+                    Node noeud5=nd.grimper();
                     ajoutNoeud(noeud1);
                     ajoutNoeud(noeud2);
                     ajoutNoeud(noeud3);
                     ajoutNoeud(noeud4);
+                    ajoutNoeud(noeud5);
                     }
             }
             //posSinge!=posBoite && singe sur le sol
@@ -142,6 +144,7 @@ public class largeur {
     public void ajoutNoeud(Node nd) {
         if (!existeNoeud(nd)) {
             v.addElement(nd);
+            System.out.println("noeud generée"+"("+nd.getPosSinge()+","+nd.isEtatSinge()+","+nd.getPosBoite()+","+nd.isEtatBanane()+")");
         }
     }
 
@@ -158,9 +161,9 @@ public class largeur {
         while(elmnt.hasMoreElements() && !estEtatBut(nd) /*&& !nd.isSterilisé()*/){
             Node nd1 = (Node)elmnt.nextElement();
             if(!estEtatBut(nd1)){
-            System.out.println("*****NOEUD A EXPLOITER:");
+            System.out.print("*****NOEUD A EXPLOITER:");
               System.out.println("("+nd1.getPosSinge()+","+nd1.isEtatSinge()+","+nd1.getPosBoite()+","+nd1.isEtatBanane()+")");
-              if(!nd1.isSterilisé())
+              if(!nd1.isSterilisé()&& !estEtatBut(nd1))
               genererNode(nd1);
             //index = v.indexOf(nd) + 1;
             nd =nd1;//= (Node) v.get(index);
