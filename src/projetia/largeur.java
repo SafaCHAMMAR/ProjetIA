@@ -9,6 +9,7 @@ import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.Vector;
 import javafx.scene.shape.VertexFormat;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -18,7 +19,7 @@ public class largeur {
 
     Node sommet;
     Vector v;
-
+    String str="";
     public largeur(Node nd) {
         sommet = new Node(nd);
         v = new Vector();
@@ -51,7 +52,8 @@ public class largeur {
 
     }
 
-    public void genererNode(Node nd) {
+    public boolean genererNode(Node nd) {
+        boolean test=false;
         //singe sur le sol
         if (nd.isEtatSinge() == false) {
             if (nd.getPosSinge() == nd.getPosBoite()) {
@@ -132,23 +134,27 @@ public class largeur {
             if(nd.getPosBoite()=='c'){
                 Node noeud1=nd.attraper();
                 ajoutNoeud(noeud1);
+                test=true;
             }
             else {nd.setSterilisé(true);
             System.out.println("!!!!!!!!!!!!!!!!!noeud sterilisé  "+"("+nd.getPosSinge()+","+nd.isEtatSinge()+","+nd.getPosBoite()+","+nd.isEtatBanane()+")");
+            str+="noeud sterilisé"+"("+nd.getPosSinge()+","+nd.isEtatSinge()+","+nd.getPosBoite()+","+nd.isEtatBanane()+") \n";
             }
             
         }
-            
+        return test;    
     }
 
     public void ajoutNoeud(Node nd) {
         if (!existeNoeud(nd)) {
             v.addElement(nd);
             System.out.println("noeud generée"+"("+nd.getPosSinge()+","+nd.isEtatSinge()+","+nd.getPosBoite()+","+nd.isEtatBanane()+")");
+            str+="noeud generée"+"("+nd.getPosSinge()+","+nd.isEtatSinge()+","+nd.getPosBoite()+","+nd.isEtatBanane()+") \n";
         }
     }
 
-    public void demarrer() {
+    public String demarrer() {
+        int t1 = (int) System.currentTimeMillis();
         boolean but = false;//on n a pas encore trouvé l etat but
         but = estEtatBut(sommet);
         int index;
@@ -158,22 +164,38 @@ public class largeur {
         Enumeration<Node> elmnt = v.elements();
        /*while (it.hasNext() && !estEtatBut(nd) && !nd.isSterilisé()) {
             Node nd1 = (Node) it.next();*/
-        while(elmnt.hasMoreElements() && !estEtatBut(nd) /*&& !nd.isSterilisé()*/){
+        boolean test=false;
+        while(elmnt.hasMoreElements() && !estEtatBut(nd) && !test/*&& !nd.isSterilisé()*/){
             Node nd1 = (Node)elmnt.nextElement();
             if(!estEtatBut(nd1)){
-            System.out.print("*****NOEUD A EXPLOITER:");
+            System.out.print("***NOEUD A EXPLOITER:**");
+            str+="***NOEUD A EXPLOITER:**";
               System.out.println("("+nd1.getPosSinge()+","+nd1.isEtatSinge()+","+nd1.getPosBoite()+","+nd1.isEtatBanane()+")");
+              str+="("+nd1.getPosSinge()+","+nd1.isEtatSinge()+","+nd1.getPosBoite()+","+nd1.isEtatBanane()+") \n";
               if(!nd1.isSterilisé()&& !estEtatBut(nd1))
-              genererNode(nd1);
+              test=genererNode(nd1);
             //index = v.indexOf(nd) + 1;
             nd =nd1;//= (Node) v.get(index);
-            System.out.println("taille de vector "+v.size());
+            System.out.println("maj du nombre des noeuds "+v.size());
+            str+="maj du nombre des noeuds "+v.size()+"\n";
             }
-            else { System.out.println("("+nd1.getPosSinge()+","+nd1.isEtatSinge()+","+nd1.getPosBoite()+","+nd1.isEtatBanane()+")");
+            /*else { System.out.println("("+nd1.getPosSinge()+","+nd1.isEtatSinge()+","+nd1.getPosBoite()+","+nd1.isEtatBanane()+")");
                 System.out.println("On a atteint l'etat but!!"+"("+nd1.getPosSinge()+","+nd1.isEtatSinge()+","+nd1.getPosBoite()+","+nd1.isEtatBanane()+")");
-            }
+            }*/
             
         }
-        System.out.println("terminéééé!!!");
+        int t2 = (int) System.currentTimeMillis();
+        int t3=t2-t1;
+        if (test) {
+            System.out.println("On a atteint l'etat but!!");
+            str+="On a atteint l'etat but!! \n";
+        }
+        System.out.println("Temps d'execution = "+t3+"ms");
+        System.out.println("Nombre des noeuds generés= "+v.size());
+        str+="Temps d'execution = "+t3+"ms\n Nombre des noeuds generés= "+v.size();
+        /*JOptionPane d = new JOptionPane();
+        d.showMessageDialog(, str);*/
+        return str;
+        
     }
 }

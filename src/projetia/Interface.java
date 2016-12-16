@@ -166,7 +166,7 @@ public class Interface extends javax.swing.JFrame {
     private void buttonCommencerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCommencerActionPerformed
         
         JOptionPane d = new JOptionPane();
-        d.showMessageDialog( this, "le message");
+        
         
         pSinge=posSinge.getSelectedItem().toString().charAt(0);
         pBoite=posBoite.getSelectedItem().toString().charAt(0);
@@ -178,11 +178,18 @@ public class Interface extends javax.swing.JFrame {
             eSinge=false;
         else eSinge=true;
         methode=methodeS.getSelectedItem().toString();
+        //verifier les données
+            if(eBanane && (!eSinge || pSinge!='c' || pBoite!='c')){
+                  d.showMessageDialog( this,"Combinaison n'est pas valide ","Attention",JOptionPane.WARNING_MESSAGE);}
+            else{
+        
         Node nd= new Node(pSinge,eSinge,pBoite,eBanane);
+        String message;
         switch(methode){
             case "Largeur":
                largeur lg=new largeur(nd);
-               lg.demarrer();
+               message=lg.demarrer();
+               d.showMessageDialog( this,message);
             break;
             case "HillClimbing":
                 HillClimbing hl=new HillClimbing();
@@ -200,6 +207,7 @@ public class Interface extends javax.swing.JFrame {
                 a.afficherNoeudsGeneres();
             break;
         }
+            }
     }//GEN-LAST:event_buttonCommencerActionPerformed
 
     private void methodeSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_methodeSActionPerformed
