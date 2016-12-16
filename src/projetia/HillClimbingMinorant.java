@@ -174,7 +174,8 @@ public class HillClimbingMinorant {
                 }
                 return indexInf;
             }
-            public void demarrer(){
+            public String demarrer(){
+        int t1 = (int) System.currentTimeMillis();
         int niveau=0;
         Vector v=new Vector<Node>();
         v = genererFils(debut);//visited true, niveau 0, ceux qui sont generé visited false, niveau 1
@@ -188,14 +189,25 @@ public class HillClimbingMinorant {
                             ((Node)noeudsGeneres.get(indexFilsInf)).setVisited(true);
                             indexFilsInf=getIndexInf((Node)noeudsGeneres.get(indexFilsInf));
             }
+                           int t2 = (int) System.currentTimeMillis();
+                int temps=t2-t1;
+                String msg;
                    if(stopRecherche()){
-                   System.out.println("Pas de solutions");
+                   msg="Pas de solutions!\n";
                }
                else{
                    int indexBut=noeudsGeneres.size()-1;
                    Node NodeBut=(Node)noeudsGeneres.elementAt(indexBut);
-                    System.out.println("Solution trouvée: "+"("+NodeBut.getPosSinge()+","+NodeBut.isEtatSinge()+","+NodeBut.getPosBoite()+","+NodeBut.isEtatBanane()+")");
+                    msg="Solution trouvée: "+"("+NodeBut.getPosSinge()+","+NodeBut.isEtatSinge()+","+NodeBut.getPosBoite()+","+NodeBut.isEtatBanane()+")\n";
                }
+                   //--------------------------affichage
+                    msg=msg+"Temps d'execution = "+temps+"ms\n Nombre des noeuds generés= "+noeudsGeneres.size();
+        Enumeration<Node> elmnt1 = noeudsGeneres.elements();
+                while (elmnt1.hasMoreElements()) {
+                    Node v2=elmnt1.nextElement();
+              msg=msg+"\n"+noeudsGeneres.indexOf(v2)+": ("+v2.getPosSinge()+","+v2.isEtatSinge()+","+v2.getPosBoite()+","+v2.isEtatBanane()+") niveau= "+v2.getNiveau()+" f="+v2.getF()+" visited=>"+v2.isVisited()+" sterilisé=>"+v2.isSterilisé();                    
+                }
+                return msg;
             }
             public boolean stopRecherche(){
                 boolean stop=true;

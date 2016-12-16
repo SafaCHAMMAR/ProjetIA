@@ -137,7 +137,7 @@ public class largeur {
                 test=true;
             }
             else {nd.setSterilisé(true);
-            System.out.println("!!!!!!!!!!!!!!!!!noeud sterilisé  "+"("+nd.getPosSinge()+","+nd.isEtatSinge()+","+nd.getPosBoite()+","+nd.isEtatBanane()+")");
+            //System.out.println("!!!!!!!!!!!!!!!!!noeud sterilisé  "+"("+nd.getPosSinge()+","+nd.isEtatSinge()+","+nd.getPosBoite()+","+nd.isEtatBanane()+")");
             str+="noeud sterilisé"+"("+nd.getPosSinge()+","+nd.isEtatSinge()+","+nd.getPosBoite()+","+nd.isEtatBanane()+") \n";
             }
             
@@ -148,7 +148,7 @@ public class largeur {
     public void ajoutNoeud(Node nd) {
         if (!existeNoeud(nd)) {
             v.addElement(nd);
-            System.out.println("noeud generée"+"("+nd.getPosSinge()+","+nd.isEtatSinge()+","+nd.getPosBoite()+","+nd.isEtatBanane()+")");
+            //System.out.println("noeud generée"+"("+nd.getPosSinge()+","+nd.isEtatSinge()+","+nd.getPosBoite()+","+nd.isEtatBanane()+")");
             str+="noeud generée"+"("+nd.getPosSinge()+","+nd.isEtatSinge()+","+nd.getPosBoite()+","+nd.isEtatBanane()+") \n";
         }
     }
@@ -168,15 +168,15 @@ public class largeur {
         while(elmnt.hasMoreElements() && !estEtatBut(nd) && !test/*&& !nd.isSterilisé()*/){
             Node nd1 = (Node)elmnt.nextElement();
             if(!estEtatBut(nd1)){
-            System.out.print("***NOEUD A EXPLOITER:**");
+            //System.out.print("***NOEUD A EXPLOITER:**");
             str+="***NOEUD A EXPLOITER:**";
-              System.out.println("("+nd1.getPosSinge()+","+nd1.isEtatSinge()+","+nd1.getPosBoite()+","+nd1.isEtatBanane()+")");
+              //System.out.println("("+nd1.getPosSinge()+","+nd1.isEtatSinge()+","+nd1.getPosBoite()+","+nd1.isEtatBanane()+")");
               str+="("+nd1.getPosSinge()+","+nd1.isEtatSinge()+","+nd1.getPosBoite()+","+nd1.isEtatBanane()+") \n";
               if(!nd1.isSterilisé()&& !estEtatBut(nd1))
               test=genererNode(nd1);
             //index = v.indexOf(nd) + 1;
             nd =nd1;//= (Node) v.get(index);
-            System.out.println("maj du nombre des noeuds "+v.size());
+           // System.out.println("maj du nombre des noeuds "+v.size());
             str+="maj du nombre des noeuds "+v.size()+"\n";
             }
             /*else { System.out.println("("+nd1.getPosSinge()+","+nd1.isEtatSinge()+","+nd1.getPosBoite()+","+nd1.isEtatBanane()+")");
@@ -187,11 +187,11 @@ public class largeur {
         int t2 = (int) System.currentTimeMillis();
         int t3=t2-t1;
         if (test) {
-            System.out.println("On a atteint l'etat but!!");
+            //System.out.println("On a atteint l'etat but!!");
             str+="On a atteint l'etat but!! \n";
         }
-        System.out.println("Temps d'execution = "+t3+"ms");
-        System.out.println("Nombre des noeuds generés= "+v.size());
+        //System.out.println("Temps d'execution = "+t3+"ms");
+        //System.out.println("Nombre des noeuds generés= "+v.size());
         str+="Temps d'execution = "+t3+"ms\n Nombre des noeuds generés= "+v.size();
         /*JOptionPane d = new JOptionPane();
         d.showMessageDialog(, str);*/

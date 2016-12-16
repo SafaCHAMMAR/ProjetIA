@@ -9,7 +9,7 @@ public class ProjetIA {
         /*System.out.println("---------------Méthode en largeur dabord---------------");
         Node nd=new Node('a','b');
         largeur lg=new largeur(nd);
-        lg.demarrer();*/
+        lg.demarrer();
         System.out.println("---------------------Hill Climbing---------------------");
         HillClimbing hl=new HillClimbing();
         hl.demarrer();
@@ -22,9 +22,10 @@ public class ProjetIA {
         A a=new A();
         a.demarrer();
         a.afficherNoeudsGeneres();
-        /*Node nd=new Node('a','b');
+        Node nd=new Node('a','b');
         Node nd2=new Node('a','b');
         System.out.println(nd.compareTo(nd2));*/
+        Interface I=new Interface();
         
     }
     
